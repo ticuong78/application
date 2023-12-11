@@ -1,24 +1,19 @@
-import logo from './logo.svg';
-import './App.css';
+import Introduction from './components/Introduction';
+import { Routes, Route } from 'react-router-dom';
+import { lazy, Suspense } from 'react';
+
+const ProductPage = lazy(() => import('./components/ProductPage'));
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Routes>
+      <Route path='/' element={<Introduction />} /> {/*introduce what are we, what is proprica, what does it do ? what is our product*/}
+      <Route path="/production" element={
+        <Suspense>
+          <ProductPage />
+        </Suspense>
+      } />
+    </Routes>
   );
 }
 
